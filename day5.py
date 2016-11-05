@@ -15,14 +15,16 @@ def nice_calc(filename):
   #create regex "rules" for each nice condition
   re_vowels = re.compile('.*[aeiou].*[aeiou].*[aeiou]')
   re_dubs = re.compile('.*(.)\\1')
-  re_verboten = re.compile('.*(ab)|(cd)|(pq)|(xy)')
+  re_verboten = re.compile('.*((ab)|(cd)|(pq)|(xy))')
   #loop through the strings and +1 nice string for each match
   for line in input:
-    if re.match(re_vowels, line) and re.match(re_dubs, line) and not re.match(re_verboten, line):
-      print line
+    if re.match(re_vowels, line):
+      if re.match(re_dubs, line):
+        if not re.match(re_verboten, line):
+          print line
       #if re.match(re_dubs, line):
        #if not re.match(re_verboten, line):
-      nice_strings = nice_strings + 1
+          nice_strings = nice_strings + 1
   
   return nice_strings
 
